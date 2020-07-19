@@ -2,6 +2,8 @@ package com.example.retrofit2;
 
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.HashMap;
 import java.util.List;
@@ -116,13 +118,14 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<Features>() {
             @Override
-            public void onResponse(Call<Features> call, Response<Features> response) {
+            public void onResponse(@NonNull Call<Features> call,@NonNull Response<Features> response) {
 
                 if (!response.isSuccessful()) {
                     textViewResult.setText("Code: " + response.code());
                     return;
                 }
 
+                assert response.body() !=null;
                 List<Properties> posts = response.body().getQuakes();
 
                 for (int i = 0; i<posts.size();i++)  {
@@ -136,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Features> call, Throwable t) {
+            public void onFailure(@NonNull Call<Features> call,@NonNull Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });
@@ -151,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
-            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+            public void onResponse(@NonNull Call<List<Post>> call,@NonNull Response<List<Post>> response) {
 
                 if (!response.isSuccessful()) {
                     textViewResult.setText("Code: " + response.code());
@@ -159,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 List<Post> posts = response.body();
-
+                assert posts != null;
                 for (Post post : posts) {
                     String content = "";
                     content += "ID: " + post.getId() + "\n";
@@ -172,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Post>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Post>> call, @NonNull Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });
