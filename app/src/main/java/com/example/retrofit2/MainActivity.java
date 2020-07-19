@@ -74,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
         //putPost();
         //patchPost();
         //deletePost();
-        deletePostCanceled();
+        //deletePostCanceled();
+        getQuakes();
     }
 
     private void getPosts(){
@@ -105,6 +106,37 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
+                textViewResult.setText(t.getMessage());
+            }
+        });
+    }
+
+    private void getQuakes(){
+        Call<Features> call = jsonPlaceHolderApi.getQuakes( "geojson","2020-07-18","10");
+
+        call.enqueue(new Callback<Features>() {
+            @Override
+            public void onResponse(Call<Features> call, Response<Features> response) {
+
+                if (!response.isSuccessful()) {
+                    textViewResult.setText("Code: " + response.code());
+                    return;
+                }
+
+                List<Properties> posts = response.body().getQuakes();
+
+                for (int i = 0; i<posts.size();i++)  {
+                    String content = "";
+                    content += "Mag: " + posts.get(i).getQuake().getMagnitude() + "\n";
+                    content += "City: " + posts.get(i).getQuake().getCityName() + "\n";
+                    content += "Time: " + posts.get(i).getQuake().getTimeInMilliseconds() + "\n\n";
+
+                    textViewResult.append(content);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Features> call, Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });

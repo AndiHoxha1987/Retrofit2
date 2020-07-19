@@ -29,6 +29,13 @@ public interface JsonPlaceHolderApi {
             @Query("_order") String order
     );
 
+    @GET("query")
+    Call<Features> getQuakes(
+            @Query("format") String format,
+            @Query("starttime") String date,
+            @Query("limit") String limit
+    );
+
     @GET("posts")
     Call<List<Post>> getPostsMap(@QueryMap Map<String, String> parameters);
 

@@ -15,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServiceGenerator {
 
     private static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
+    private static final String TEST_URL = "https://earthquake.usgs.gov/fdsnws/event/1/";
 
     //this GsonBuilder make null all fields, and is used to customize gson
     private static Gson gson = new GsonBuilder().serializeNulls().create();
@@ -29,7 +30,7 @@ public class ServiceGenerator {
     private static OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
 
     private static Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(TEST_URL)
             .addConverterFactory(GsonConverterFactory.create(gson)); //gson is added to make null not updated fields
 
     private static Retrofit retrofit = builder.build();
