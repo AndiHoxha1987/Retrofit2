@@ -1,6 +1,13 @@
 # Retrofit2
 Android, Java, Retrofit2, Json, Gson, Okhttp3, Interceptor
 
-This project is focused on Retrofit2. Multiple samples are created for different use-cases.
+This project is focused on Retrofit2. 
 
-The project is a good reference for implementing Retrofit in future projects.
+Getting data from two different APi-s and displaying to the UI.
+
+https://jsonplaceholder.typicode.com/
+https://earthquake.usgs.gov/fdsnws/event/1/
+
+
+Multiple samples are created for different use-cases.
+
