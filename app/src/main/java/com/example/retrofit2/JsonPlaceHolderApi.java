@@ -1,5 +1,9 @@
 package com.example.retrofit2;
 
+import com.example.retrofit2.model.earthquake.Features;
+import com.example.retrofit2.model.testApi.Comment;
+import com.example.retrofit2.model.testApi.Post;
+
 import java.util.List;
 import java.util.Map;
 

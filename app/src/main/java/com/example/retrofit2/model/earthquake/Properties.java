@@ -1,18 +1,16 @@
-package com.example.retrofit2;
+package com.example.retrofit2.model.earthquake;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class Properties {
     @SerializedName("properties")
-    private Quake Quake;
+    private com.example.retrofit2.model.earthquake.Quake quake;
 
     public Quake getQuake() {
-        return Quake;
+        return quake;
     }
 
     public void setQuakes(Quake quake) {
-        Quake = quake;
+        this.quake = quake;
     }
 }

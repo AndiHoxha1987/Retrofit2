@@ -1,17 +1,17 @@
-package com.example.retrofit2;
+package com.example.retrofit2.model.earthquake;
 
 import com.google.gson.annotations.SerializedName;
 
 public class Quake {
 
     @SerializedName("mag")
-    private double magnitude;
+    private final double magnitude;
 
     @SerializedName("place")
-    private String cityName;
+    private final String cityName;
 
     @SerializedName("time")
-    private long timeInMilliseconds;
+    private final long timeInMilliseconds;
 
     public Quake(double  magnitude,String cityName, long timeInMilliseconds){
         this.magnitude=magnitude;

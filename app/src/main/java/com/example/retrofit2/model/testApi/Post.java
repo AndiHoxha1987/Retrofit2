@@ -1,17 +1,17 @@
-package com.example.retrofit2;
+package com.example.retrofit2.model.testApi;
 
 import com.google.gson.annotations.SerializedName;
 
 public class Post {
 
-    private int userId;
+    private final int userId;
 
     private Integer id;
 
-    private String title;
+    private final String title;
 
     @SerializedName("body")
-    private String text;
+    private final String text;
 
     public Post(int userId, String title, String text) {
         this.userId = userId;

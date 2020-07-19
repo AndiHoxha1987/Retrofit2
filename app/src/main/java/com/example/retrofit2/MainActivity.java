@@ -5,6 +5,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.retrofit2.model.earthquake.Features;
+import com.example.retrofit2.model.earthquake.Properties;
+import com.example.retrofit2.model.testApi.Comment;
+import com.example.retrofit2.model.testApi.Post;
+import com.example.retrofit2.service.ServiceGenerator;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,15 +95,16 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
-            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+            public void onResponse(@NotNull Call<List<Post>> call, @NotNull Response<List<Post>> response) {
 
                 if (!response.isSuccessful()) {
-                    textViewResult.setText("Code: " + response.code());
+                    textViewResult.setText(getResources().getString(R.string.code, response.code()));
                     return;
                 }
 
                 List<Post> posts = response.body();
 
+                assert posts != null;
                 for (Post post : posts) {
                     String content = "";
                     content += "ID: " + post.getId() + "\n";
@@ -107,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Post>> call, Throwable t) {
+            public void onFailure(@NotNull Call<List<Post>> call, @NotNull Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });
@@ -121,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<Features> call,@NonNull Response<Features> response) {
 
                 if (!response.isSuccessful()) {
-                    textViewResult.setText("Code: " + response.code());
+                    textViewResult.setText(getResources().getString(R.string.code, response.code()));
                     return;
                 }
 
@@ -157,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<List<Post>> call,@NonNull Response<List<Post>> response) {
 
                 if (!response.isSuccessful()) {
-                    textViewResult.setText("Code: " + response.code());
+                    textViewResult.setText(getResources().getString(R.string.code, response.code()));
                     return;
                 }
 
@@ -187,15 +197,15 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<List<Comment>>() {
             @Override
-            public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
+            public void onResponse(@NotNull @NonNull Call<List<Comment>> call, @NotNull @NonNull Response<List<Comment>> response) {
 
                 if (!response.isSuccessful()) {
-                    textViewResult.setText("Code: " + response.code());
+                    textViewResult.setText(getResources().getString(R.string.code, response.code()));
                     return;
                 }
 
                 List<Comment> comments = response.body();
-
+                assert comments != null;
                 for (Comment comment : comments) {
                     String content = "";
                     content += "ID: " + comment.getId() + "\n";
@@ -209,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Comment>> call, Throwable t) {
+            public void onFailure(@NotNull @NonNull Call<List<Comment>> call, @NotNull @NonNull Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });
@@ -222,15 +232,15 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<List<Comment>>() {
             @Override
-            public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
+            public void onResponse(@NotNull @NonNull Call<List<Comment>> call, @NotNull @NonNull Response<List<Comment>> response) {
 
                 if (!response.isSuccessful()) {
-                    textViewResult.setText("Code: " + response.code());
+                    textViewResult.setText(getResources().getString(R.string.code, response.code()));
                     return;
                 }
 
                 List<Comment> comments = response.body();
-
+                assert comments != null;
                 for (Comment comment : comments) {
                     String content = "";
                     content += "ID: " + comment.getId() + "\n";
@@ -244,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Comment>> call, Throwable t) {
+            public void onFailure(@NotNull @NonNull Call<List<Comment>> call, @NotNull @NonNull Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });
@@ -257,15 +267,15 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<Post>() {
             @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
+            public void onResponse(@NotNull @NonNull Call<Post> call, @NotNull @NonNull Response<Post> response) {
 
                 if (!response.isSuccessful()) {
-                    textViewResult.setText("Code: " + response.code());
+                    textViewResult.setText(getResources().getString(R.string.code, response.code()));
                     return;
                 }
 
                 Post postResponse = response.body();
-
+                assert postResponse != null;
                 String content = "";
                 content += "Code: " + response.code() + "\n";
                 content += "ID: " + postResponse.getId() + "\n";
@@ -277,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Post> call, Throwable t) {
+            public void onFailure(@NotNull @NonNull Call<Post> call, @NotNull @NonNull Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });
@@ -292,10 +302,10 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<Post>() {
             @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
+            public void onResponse(@NotNull Call<Post> call, @NotNull Response<Post> response) {
 
                 if (!response.isSuccessful()) {
-                    textViewResult.setText("Code: " + response.code());
+                    textViewResult.setText(getResources().getString(R.string.code, response.code()));
                     return;
                 }
 
@@ -303,6 +313,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String content = "";
                 content += "Code: " + response.code() + "\n";
+                assert postResponse != null;
                 content += "ID: " + postResponse.getId() + "\n";
                 content += "User ID: " + postResponse.getUserId() + "\n";
                 content += "Title: " + postResponse.getTitle() + "\n";
@@ -312,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Post> call, Throwable t) {
+            public void onFailure(@NotNull Call<Post> call, @NotNull Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });
@@ -328,10 +339,10 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<Post>() {
             @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
+            public void onResponse(@NotNull Call<Post> call, @NotNull Response<Post> response) {
 
                 if (!response.isSuccessful()) {
-                    textViewResult.setText("Code: " + response.code());
+                    textViewResult.setText(getResources().getString(R.string.code, response.code()));
                     return;
                 }
 
@@ -339,6 +350,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String content = "";
                 content += "Code: " + response.code() + "\n";
+                assert postResponse != null;
                 content += "ID: " + postResponse.getId() + "\n";
                 content += "User ID: " + postResponse.getUserId() + "\n";
                 content += "Title: " + postResponse.getTitle() + "\n";
@@ -348,7 +360,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Post> call, Throwable t) {
+            public void onFailure(@NotNull Call<Post> call, @NotNull Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });
@@ -361,10 +373,10 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<Post>() {
             @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
+            public void onResponse(@NotNull Call<Post> call, @NotNull Response<Post> response) {
 
                 if (!response.isSuccessful()) {
-                    textViewResult.setText("Code: " + response.code());
+                    textViewResult.setText(getResources().getString(R.string.code, response.code()));
                     return;
                 }
 
@@ -372,6 +384,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String content = "";
                 content += "Code: " + response.code() + "\n";
+                assert postResponse != null;
                 content += "ID: " + postResponse.getId() + "\n";
                 content += "User ID: " + postResponse.getUserId() + "\n";
                 content += "Title: " + postResponse.getTitle() + "\n";
@@ -381,7 +394,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Post> call, Throwable t) {
+            public void onFailure(@NotNull Call<Post> call, @NotNull Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });
@@ -398,10 +411,10 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<Post>() {
             @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
+            public void onResponse(@NotNull Call<Post> call, @NotNull Response<Post> response) {
 
                 if (!response.isSuccessful()) {
-                    textViewResult.setText("Code: " + response.code());
+                    textViewResult.setText(getResources().getString(R.string.code, response.code()));
                     return;
                 }
 
@@ -409,6 +422,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String content = "";
                 content += "Code: " + response.code() + "\n";
+                assert postResponse != null;
                 content += "ID: " + postResponse.getId() + "\n";
                 content += "User ID: " + postResponse.getUserId() + "\n";
                 content += "Title: " + postResponse.getTitle() + "\n";
@@ -418,7 +432,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Post> call, Throwable t) {
+            public void onFailure(@NotNull Call<Post> call, @NotNull Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });
@@ -429,16 +443,16 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
                 if(response.isSuccessful()){
-                    textViewResult.setText("Code: " + response.code());
+                    textViewResult.setText(getResources().getString(R.string.code, response.code()));
                 }else{
-                    textViewResult.setText("Error: "+ response.code());
+                    textViewResult.setText(getResources().getString(R.string.error, response.code()));
                 }
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(@NotNull Call<Void> call, @NotNull Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });
@@ -449,18 +463,18 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
                 if(response.isSuccessful()){
-                    textViewResult.setText("Code: " + response.code());
+                    textViewResult.setText(getResources().getString(R.string.code, response.code()));
                 }else{
-                    textViewResult.setText("Error: "+ response.code());
+                    textViewResult.setText(getResources().getString(R.string.error, response.code()));
                 }
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(@NotNull Call<Void> call, @NotNull Throwable t) {
                 if(call.isCanceled()){
-                    textViewResult.setText("Cancelled");
+                    textViewResult.setText(getResources().getString(R.string.canceled));
                 }else{
                     textViewResult.setText(t.getMessage());
                 }
