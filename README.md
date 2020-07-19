@@ -6,6 +6,7 @@ This project is focused on Retrofit2.
 Getting data from two different APi-s and displaying to the UI.
 
 https://jsonplaceholder.typicode.com/
+
 https://earthquake.usgs.gov/fdsnws/event/1/
 
 
